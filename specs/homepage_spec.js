@@ -6,7 +6,7 @@ describe('AngularJS/Protractor Demo App Homepage', function() {
 
     var search = element(by.css('#search .js-searchbar-input'));
     search.click();
-    search.type("Sennheiser HD 800");
+    search.sendKeys("Sennheiser HD 800");
 
     var submit = element(by.css('.searchbar-submit'));
     submit.click();
