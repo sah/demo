@@ -23,13 +23,14 @@ exports.config = {
     browserName: 'chrome',
     version: '41',
     platform: 'Windows 7',
-    name: "x",
+    name: "chrome-tests",
     shardTestFiles: true,
     maxInstances: 25
   }, {
     browserName: 'internet explorer',
     version: '11',
     platform: 'Windows 7',
+    name: "ie-tests",
     shardTestFiles: true,
     maxInstances: 25
   }],
