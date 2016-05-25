@@ -2,7 +2,7 @@
 describe('AngularJS/Protractor Demo Tab1 default values', function() {
 
   it('should have the correct default data', function() {
-    browser.get('http://localhost:8000');
+    browser.get('http://walmart.com/');
 
     element(by.css('.index')).click();
 
