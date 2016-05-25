@@ -23,6 +23,7 @@ exports.config = {
     browserName: 'chrome',
     version: '41',
     platform: 'Windows 7',
+    name: "",
     shardTestFiles: true,
     maxInstances: 25
   }, {
