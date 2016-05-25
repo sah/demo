@@ -6,6 +6,9 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
+javac
+java
+
 # run tests
 echo "Running Functional Tests using Protractor"
 if ./node_modules/.bin/protractor conf.js ; then
