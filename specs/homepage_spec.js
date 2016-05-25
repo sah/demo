@@ -4,9 +4,12 @@ describe('AngularJS/Protractor Demo App Homepage', function() {
   it('should verify title', function() {
     browser.get('http://walmart.com/');
 
-    var title = element(by.css('body h1'));
+    var search = element(by.css('#search .js-searchbar-input'));
+    search.click();
+    search.type("Sennheiser HD 800");
 
-    expect(title.getText()).toEqual('Title');
+    var submit = element(by.css('.searchbar-submit'));
+    submit.click();
   });
 
 });
