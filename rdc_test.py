@@ -10,7 +10,7 @@ from sauceclient import SauceClient
 USERNAME = os.environ.get('SAUCE_USERNAME')
 ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY')
 
-BUILD = "RDC load %s" % int((time.time() - 1424998460) / 60.)
+BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
@@ -97,7 +97,7 @@ class RdcLoadTest(unittest.TestCase):
 
     def test_search(self):
         self.driver.get('http://walmart.com/')
-        search = self.driver.find_element_by_css_selector('#search .js-searchbar-input')
+        search = self.driver.find_element_by_css_selector('.js-searchbar-input')
         search.click()
         search.send_keys("hot sauce")
 
