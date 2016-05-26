@@ -30,7 +30,7 @@ exports.config = {
     browserName: 'internet explorer',
     version: '11',
     platform: 'Windows 7',
-    name: "ie11-tests",
+    name: "ie-tests",
     shardTestFiles: true,
     maxInstances: 25
   }],

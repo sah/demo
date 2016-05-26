@@ -2,7 +2,7 @@
 describe('AngularJS/Protractor Demo App Homepage', function() {
 
   it('should verify title', function() {
-    browser.get('http://walmart.com/');
+    browser.get('http://localhost:8000');
 
     var title = element(by.css('body h1'));
 

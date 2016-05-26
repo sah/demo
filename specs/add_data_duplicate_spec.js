@@ -2,7 +2,7 @@
 describe('AngularJS/Protractor Demo Tab1 new', function() {
 
   it('should add data and verify it was added new test', function() {
-    browser.get('http://walmart.com/');
+    browser.get('http://localhost:8000');
 
     element(by.css('.index')).click();
 

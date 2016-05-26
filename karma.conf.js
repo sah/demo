@@ -10,19 +10,25 @@ module.exports = function(config) {
       base: 'SauceLabs',
       browserName: 'chrome',
       version: 40,
-      platform: 'XP'
+      platform: 'XP',
+      build: process.env.JOB_NAME + ' #' + process.env.BUILD_NUMBER,
+      recordScreenshots: true
     },
     'SL_InternetExplorer': {
       base: 'SauceLabs',
       browserName: 'internet explorer',
       version: '10',
-      platform: 'Windows 7'
-    },
+      platform: 'Windows 7',
+      build: process.env.JOB_NAME + ' #' + process.env.BUILD_NUMBER,
+      recordScreenshots: true
+   },
     'SL_FireFox': {
       base: 'SauceLabs',
       browserName: 'firefox',
       platform: 'Linux',
-      version: 31
+      version: 31,
+      build: process.env.JOB_NAME + ' #' + process.env.BUILD_NUMBER,
+      recordScreenshots: true
     }
   };
 
