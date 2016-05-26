@@ -6,7 +6,12 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
-npm test
+which node
+which python
+node -v
+python -v
+pip -v
+#npm test
 
 # run tests
 echo "Running Functional Tests using Protractor"
