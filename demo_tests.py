@@ -42,7 +42,7 @@ class FailTestException(Exception):
     pass
 
 
-def spin_assert(msg, test, timeout=30, args=[]):
+def spin_assert(msg, test, timeout=5, args=[]):
     name = getattr(test, '__name__', 'unknown')
     last_e = None
     for i in xrange(timeout):
