@@ -6,7 +6,7 @@ setup:
 
 static_code_anlysis:
 	@echo "\n--------\nRunning JSHint...\n--------\n"
-	./node_modules/.bin/jshint controllers services views test specs *.js
+	./node_modules/.bin/jshint controllers services views specs 
 
 unit_tests:
 	@echo "\n--------\nRunning unit_tests...\n--------\n"
