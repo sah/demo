@@ -6,7 +6,7 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
-npm grunttest
+npm test
 
 # run tests
 echo "Running Functional Tests using Protractor"
