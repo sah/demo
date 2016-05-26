@@ -14,9 +14,10 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
+platforms = [{'deviceName': "Android Emulator",
               'deviceOrientation': "portrait",
-              'browserName': "android"
+              'browserName': "android",
+              'version': "5.1"
               },
              {'deviceName': "iPhone Simulator",
               'platformName': "iOS",
@@ -29,8 +30,24 @@ platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'browserName': "chrome",
               'version': "latest"
               },
+             {'platform': "Windows 10",
+              'browserName': "edge",
+              'version': "latest"
+              },
+             {'platform': "Windows 10",
+              'browserName': "firefox",
+              'version': "latest"
+              },
              {'platform': "OS X 10.11",
               'browserName': "safari",
+              'version': "latest"
+              },
+             {'platform': "OS X 10.11",
+              'browserName': "chrome",
+              'version': "latest"
+              },
+             {'platform': "OS X 10.11",
+              'browserName': "firefox",
               'version': "latest"
               }]
 
