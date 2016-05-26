@@ -6,8 +6,7 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
-mkvirtualenv
-py.test -n2 --boxed rdc_test.py
+npm grunttest
 
 # run tests
 echo "Running Functional Tests using Protractor"

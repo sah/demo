@@ -1,18 +1,24 @@
 {
-  "name": "angularprbuild",
+  "name": "sahprbuild",
   "version": "1.0.0",
   "description": "run unit and functional tests for each Pull Request",
   "main": "app.js",
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "karmatest": "karma start karma.conf.js"
+    "grunttest": "node_modules/.bin/grunt"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "angular": "^1.4.8",
-    "angular-mocks": "^1.4.8",
-    "angular-route": "^1.4.8",
     "chai": "^3.4.1",
+    "grunt": "0.4.5",
+    "grunt-mocha-parallel": "^0.1.7",
+    "grunt-parallel": "^0.4.1",
+    "grunt-cli": "^0.1.13",
+    "mocha": "1.18.2",
+    "saucelabs": "^1.0.1",
+    "selenium-standalone": "2.42.0-2.9.0-1",
+    "selenium-webdriver": "^2.48.2"
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.15",
     "karma-jasmine": "^0.3.6",
@@ -21,5 +27,8 @@
     "requirejs": "^2.1.22",
     "protractor": "2.1.0",
     "jshint": "^2.9.2"
+  },
+  "engines": {
+    "node": "0.10.29"
   }
 }
