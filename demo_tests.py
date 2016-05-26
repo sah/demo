@@ -82,7 +82,7 @@ def on_platforms(platforms):
 
 
 @on_platforms(platforms)
-class RdcLoadTest(unittest.TestCase):
+class WalmartTests(unittest.TestCase):
     def setUp(self):
         self.desired_capabilities['name'] = self.id()
         self.desired_capabilities['build'] = BUILD
@@ -103,23 +103,12 @@ class RdcLoadTest(unittest.TestCase):
 
         submit = self.driver.find_element_by_css_selector('.searchbar-submit')
         submit.click()
-        spin_assert("wrong title", lambda: "I am a page title - Sauce Labs" in self.driver.title)
+        spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
+        cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
+        cholula.click()
         spin_assert("wrong comment",
-                    lambda: ('Your comments: Hello! I am some example comments.'
-                             ' I should be in the page after submitting the form'
-                             in self.driver.find_element_by_id('your_comments').text))
-
-    def test_paste(self):
-        wd = self.driver
-        wd.get("http://codepad.org/")
-        wd.find_element_by_xpath("//div[@id='editor']/form/table/tbody/tr[2]/td[1]/nobr[10]/label/input").click()
-        wd.find_element_by_id("textarea").click()
-        wd.find_element_by_id("textarea").clear()
-        wd.find_element_by_id("textarea").send_keys("print \"hello\"")
-        if not wd.find_element_by_name("private").is_selected():
-            wd.find_element_by_name("private").click()
-        wd.find_element_by_name("submit").click()
-        spin_assert('no hello', lambda: "print \"hello\"" in wd.find_element_by_tag_name("html").text)
+                    lambda: ('5.98'
+                             in self.driver.find_element_by_css_selector('.js-price-display').text))
 
     def test_basics(self):
         wd = self.driver
