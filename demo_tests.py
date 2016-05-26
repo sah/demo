@@ -113,6 +113,10 @@ class WalmartTests(unittest.TestCase):
         )
         self.driver.implicitly_wait(30)
 
+    def move_to_element(self, element):
+        if not self.desired_capabilities['browserName'] in ['android', 'safari']:
+            ActionChains(self.driver).move_to_element(element).perform()
+
     def test_search(self):
         self.driver.get('http://walmart.com/')
         search = self.driver.find_element_by_css_selector('.js-searchbar-input')
@@ -130,8 +134,7 @@ class WalmartTests(unittest.TestCase):
         wd = self.driver
         wd.get("http://walmart.com/")
         terms = wd.find_element_by_link_text("Terms of Use")
-        if not self.desired_capabilities['browserName'] in ['android', 'safari']:
-            ActionChains(wd).move_to_element(terms).perform()
+        self.move_to_element(terms)
         terms.click()
         wd.find_element_by_link_text("Introduction").click()
         spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
