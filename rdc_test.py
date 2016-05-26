@@ -21,8 +21,9 @@ platforms = [{'deviceName': "Samsung Galaxy S5 Device",
               'device-orientation': "portrait",
               'browserName': "Chrome"
               },
-             {'platformName': "Windows 10",
-              'browserName': "chrome"
+             {'platform': "Windows 10",
+              'browserName': "chrome",
+              'browserVersion': "latest"
               }]
 
 
@@ -83,22 +84,23 @@ class RdcLoadTest(unittest.TestCase):
         )
         self.driver.implicitly_wait(30)
 
-    def test_sauce(self):
-        self.driver.get('http://saucelabs.com/test/guinea-pig')
+    def test_search(self):
+        self.driver.get('http://walmart.com/')
+        search = self.driver.find_element_by_css('#search .js-searchbar-input')
+        search.click()
+        search.send_keys("hot sauce")
+
+        submit = self.driver.find_element_by_css('.searchbar-submit')
+        submit.click()
         spin_assert("wrong title", lambda: "I am a page title - Sauce Labs" in self.driver.title)
         comments = self.driver.find_element_by_id('comments')
         comments.send_keys('Hello! I am some example comments.'
                            ' I should be in the page after submitting the form')
         self.driver.find_element_by_id('submit').click()
-
         spin_assert("wrong comment",
                     lambda: ('Your comments: Hello! I am some example comments.'
                              ' I should be in the page after submitting the form'
                              in self.driver.find_element_by_id('your_comments').text))
-        spin_assert('bad body', lambda: 'I am some other page content' not in self.driver.find_element_by_xpath('//body').text)
-        self.driver.find_elements_by_link_text('i am a link')[0].click()
-
-        spin_assert('bad content', lambda: 'I am some other page content' in self.driver.find_element_by_xpath('//body').text)
 
     def test_paste(self):
         wd = self.driver
