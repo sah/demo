@@ -124,7 +124,7 @@ class WalmartTests(unittest.TestCase):
         spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
         cholula.click()
-        spin_assert("wrong title", lambda: "Cholula" in self.driver.title)
+        spin_assert("wrong title", lambda: "Cholula Original" in self.driver.title)
 
     def test_terms(self):
         wd = self.driver
