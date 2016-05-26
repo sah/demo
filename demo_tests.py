@@ -14,7 +14,7 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Samsung Galaxy S4 Emulator"",
+platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'deviceOrientation': "portrait",
               'browserName': "android"
               },
