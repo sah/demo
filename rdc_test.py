@@ -14,12 +14,19 @@ BUILD = "RDC load %s" % int((time.time() - 1424998460) / 60.)
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Samsung Galaxy S5 Emulator",
-              'appium-version': "1.4",
+platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'platformName': "Android",
               'platformVersion': "4.4",
-              'device-orientation': "portrait",
+              'deviceOrientation': "portrait",
               'browserName': "Chrome"
+              'appiumVersion': "1.5.2",
+              },
+             {'deviceName': "iPhone Simulator",
+              'platformName': "iOS",
+              'platformVersion': "9.2",
+              'deviceOrientation': "portrait",
+              'browserName': "Safari",
+              'appiumVersion': "1.5.2",
               },
              {'platform': "Windows 10",
               'browserName': "chrome",

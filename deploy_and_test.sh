@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 # run tests
 echo "Running Functional Tests using py.test"
-if py.test -n2 --boxed rdc_test.py ; then
+if py.test -n20 --boxed rdc_test.py ; then
     # shut down server
     kill $FOO_PID
     # return appropriate exit code
