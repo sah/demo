@@ -21,14 +21,9 @@ platforms = [{'deviceName': "Samsung Galaxy S5 Device",
               'device-orientation': "portrait",
               'browserName': "Chrome"
               },
-             {'deviceName': "Samsung Galaxy S4 Device",
-              'appium-version': "1.4",
-              'platformName': "Android",
-              'platformVersion': "4.4",
-              'device-orientation': "portrait",
-              'browserName': "Chrome"
+             {'platformName': "Windows 10",
+              'browserName': "chrome"
               }]
-platforms = platforms * 10
 
 
 class FailTestException(Exception):
