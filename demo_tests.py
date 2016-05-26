@@ -137,7 +137,8 @@ class WalmartTests(unittest.TestCase):
         self.move_to_element(terms)
         terms.click()
         wd.find_element_by_link_text("Introduction").click()
-        spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
+        spin_assert('no acceptance',
+                    lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
 
     def tearDown(self):
         print("Link to your job: https://saucelabs.com/jobs/%s" % self.driver.session_id)
