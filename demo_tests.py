@@ -14,7 +14,7 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
+platforms = [{'deviceName': "Android Emulator",
               'platformName': "Android",
               'platformVersion': "4.4",
               'deviceOrientation': "portrait",
@@ -108,15 +108,12 @@ class WalmartTests(unittest.TestCase):
         spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
         cholula.click()
-        spin_assert("wrong comment",
-                    lambda: ('FREE shipping on orders $50 +'
-                             in self.driver.find_element_by_css_selector('.free-shipping-threshold-eligible').text))
+        spin_assert("wrong title", lambda: "Cholula" in self.driver.title)
 
     def test_basics(self):
         wd = self.driver
         wd.get("http://walmart.com/")
         wd.find_element_by_link_text("Tips & Ideas").click()
-        spin_assert('no find it', lambda: "Find it fast" in wd.find_element_by_tag_name("html").text)
         wd.find_element_by_link_text("Food & Celebrations").click()
         wd.find_element_by_link_text("Food & Recipes").click()
         spin_assert('no special occasions', lambda: "Special Occasions" in wd.find_element_by_tag_name("html").text)
