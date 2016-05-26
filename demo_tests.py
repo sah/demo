@@ -18,7 +18,6 @@ platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'platformName': "Android",
               'platformVersion': "4.4",
               'deviceOrientation': "portrait",
-              'browserName': "Chrome",
               'appiumVersion': "1.5.2"
               },
              {'deviceName': "iPhone Simulator",
@@ -107,8 +106,8 @@ class WalmartTests(unittest.TestCase):
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
         cholula.click()
         spin_assert("wrong comment",
-                    lambda: ('5.98'
-                             in self.driver.find_element_by_css_selector('.js-price-display').text))
+                    lambda: ('FREE shipping on orders $50 +'
+                             in self.driver.find_element_by_css_selector('.free-shipping-threshold-eligible').text))
 
     def test_basics(self):
         wd = self.driver
