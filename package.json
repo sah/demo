@@ -27,8 +27,5 @@
     "requirejs": "^2.1.22",
     "protractor": "2.1.0",
     "jshint": "^2.9.2"
-  },
-  "engines": {
-    "node": "0.10.29"
   }
 }
