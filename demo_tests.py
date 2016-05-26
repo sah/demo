@@ -107,13 +107,12 @@ class WalmartTests(unittest.TestCase):
         cholula.click()
         spin_assert("wrong title", lambda: "Cholula" in self.driver.title)
 
-    def test_basics(self):
+    def test_terms(self):
         wd = self.driver
         wd.get("http://walmart.com/")
-        wd.find_element_by_link_text("Tips & Ideas").click()
-        wd.find_element_by_link_text("Food & Celebrations").click()
-        wd.find_element_by_link_text("Food & Recipes").click()
-        spin_assert('no special occasions', lambda: "Special Occasions" in wd.find_element_by_tag_name("html").text)
+        wd.find_element_by_link_text("Terms of Use").click()
+        wd.find_element_by_link_text("Introduction").click()
+        spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
 
     def tearDown(self):
         print("Link to your job: https://saucelabs.com/jobs/%s" % self.driver.session_id)
