@@ -4,12 +4,9 @@ describe('AngularJS/Protractor Demo App Homepage', function() {
   it('should verify title', function() {
     browser.get('http://localhost:8000');
 
-    var search = element(by.css('#search .js-searchbar-input'));
-    search.click();
-    search.sendKeys("Sennheiser HD 800");
+    var title = element(by.css('body h1'));
 
-    var submit = element(by.css('.searchbar-submit'));
-    submit.click();
+    expect(title.getText()).toEqual('Title');
   });
 
 });

@@ -60,10 +60,8 @@ def on_platforms(platforms):
             d = dict(base_class.__dict__)
             d['desired_capabilities'] = platform
 
-            p = platform['deviceName']
-            if 'S4' in p:
-                p = 'S4'
-            elif 'S5' in p:
+            p = platform.get('deviceName', platform['browserName'])
+            if 'S5' in p:
                 p = 'S5'
 
             name = "%s_%s_%s" % (base_class.__name__, p, i + 1)
