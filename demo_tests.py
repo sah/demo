@@ -43,7 +43,7 @@ platforms = [{'deviceName': "Android Emulator",
               'browserName': "safari",
               'version': "latest"
               },
-             {'platform': "OS X 10.11",
+             {'platform': "OS X 10.10",
               'browserName': "chrome",
               'version': "latest"
               },
