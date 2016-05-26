@@ -18,6 +18,7 @@ platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'platformName': "Android",
               'platformVersion': "4.4",
               'deviceOrientation': "portrait",
+              'browserName': "browser",
               'appiumVersion': "1.5.2"
               },
              {'deviceName': "iPhone Simulator",
