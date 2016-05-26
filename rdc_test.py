@@ -18,15 +18,15 @@ platforms = [{'deviceName': "Samsung Galaxy S4 Emulator",
               'platformName': "Android",
               'platformVersion': "4.4",
               'deviceOrientation': "portrait",
-              'browserName': "Chrome"
-              'appiumVersion': "1.5.2",
+              'browserName': "Chrome",
+              'appiumVersion': "1.5.2"
               },
              {'deviceName': "iPhone Simulator",
               'platformName': "iOS",
               'platformVersion': "9.2",
               'deviceOrientation': "portrait",
               'browserName': "Safari",
-              'appiumVersion': "1.5.2",
+              'appiumVersion': "1.5.2"
               },
              {'platform': "Windows 10",
               'browserName': "chrome",
