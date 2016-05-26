@@ -43,7 +43,7 @@ platforms = [{'deviceName': "Android Emulator",
               'browserName': "safari",
               'version': "latest"
               },
-             {'platform': "OS X 10.11",
+             {'platform': "OS X 10.10",
               'browserName': "chrome",
               'version': "latest"
               },
@@ -129,7 +129,8 @@ class WalmartTests(unittest.TestCase):
         wd = self.driver
         wd.get("http://walmart.com/")
         terms = wd.find_element_by_link_text("Terms of Use")
-        ActionChains(wd).move_to_element(terms).perform()
+        if not self.desired_capabilities['browserName'] in ['android', 'safari']:
+            ActionChains(wd).move_to_element(terms).perform()
         terms.click()
         wd.find_element_by_link_text("Introduction").click()
         spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
