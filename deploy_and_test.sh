@@ -7,7 +7,8 @@ FOO_PID=$!
 sleep 3
 
 PATH=$PATH:~/.local/bin
-easy_install --user pip
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py --user
 pip install --user virtualenv
 #npm test
 
