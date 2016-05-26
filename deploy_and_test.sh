@@ -29,7 +29,6 @@ else
     exit 1
 fi
 
-
 echo "Running Functional Tests using Protractor"
 if ./node_modules/.bin/protractor conf.js ; then
     # shut down server
