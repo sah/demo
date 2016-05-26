@@ -51,6 +51,7 @@ platforms = [{'deviceName': "Android Emulator",
               'browserName': "firefox",
               'version': "latest"
               }]
+platforms = platforms * 2
 
 
 class FailTestException(Exception):
