@@ -5,6 +5,7 @@ import unittest
 import time
 import traceback
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 from sauceclient import SauceClient
 
 USERNAME = os.environ.get('SAUCE_USERNAME')
@@ -127,7 +128,9 @@ class WalmartTests(unittest.TestCase):
     def test_terms(self):
         wd = self.driver
         wd.get("http://walmart.com/")
-        wd.find_element_by_link_text("Terms of Use").click()
+        terms = wd.find_element_by_link_text("Terms of Use")
+        ActionChains(wd).move_to_element(terms).perform()
+        terms.click()
         wd.find_element_by_link_text("Introduction").click()
         spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
 
