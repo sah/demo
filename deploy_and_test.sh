@@ -14,8 +14,7 @@ PATH=$PATH:~/.local/bin
 
 source sah_venv/bin/activate
 pip install -r requirements.txt
-py.test --help
-py.test -n2 rdc_test.py
+py.test -n2 --boxed rdc_test.py
 
 # run tests
 echo "Running Functional Tests using Protractor"
