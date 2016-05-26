@@ -6,11 +6,9 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
-which node
-which python
-node -v
-python -v
-pip -v
+PATH=$PATH:~/.local/bin
+easy_install --user pip
+pip install --user virtualenv
 #npm test
 
 # run tests
