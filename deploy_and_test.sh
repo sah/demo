@@ -10,6 +10,10 @@ PATH=$PATH:~/.local/bin
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py --user
 pip install --user virtualenv
+virtualenv sah_venv
+source sah_venv/bin/activate
+pip install -r requirements.txt
+py.test -n2 --boxed rdc_test.py
 #npm test
 
 # run tests
