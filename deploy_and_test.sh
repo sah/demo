@@ -6,8 +6,7 @@ python -m SimpleHTTPServer &
 FOO_PID=$!
 sleep 3
 
-javac
-java
+py.test -n2 --boxed rdc_test.py
 
 # run tests
 echo "Running Functional Tests using Protractor"
