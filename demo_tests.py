@@ -148,7 +148,8 @@ class WalmartTests(unittest.TestCase):
         wd = self.driver
         wd.get("http://walmart.com/")
         terms = wd.find_element_by_link_text("Terms of Use")
-        self.move_to_element(terms)
+        #self.move_to_element(terms)
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         terms.click()
         wd.find_element_by_link_text("Introduction").click()
         spin_assert('no acceptance',
