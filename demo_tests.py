@@ -70,18 +70,18 @@ def spin_assert(msg, test, timeout=5, args=[]):
             if not test(*args):
                 raise AssertionError(msg)
             if i > 0:
-                print msg, "success on %s (%s)" % (i + 1, name)
+                print "success on try %s (%s(msg=%s args=%s))" % (i + 1, name, repr(msg), repr(args))
             break
         except FailTestException:
             raise
         except Exception, e:
             if (str(e), type(e)) != (str(last_e), type(last_e)):
-                print msg, "(try: %s):" % (i + 1), str(e), type(e)
+                print "%s: %s (try: %s):" % (msg, repr(args), (i + 1), str(e), type(e))
                 traceback.print_exc(file=sys.stdout)
             last_e = e
         time.sleep(1)
     else:
-        print "%s fail (%s tries) (%s)" % (msg, i + 1, name)
+        print "%s: %s fail (%s tries) (%s)" % (msg, repr(args), i + 1, name)
         raise AssertionError(msg)
 
 
