@@ -115,7 +115,7 @@ class WalmartTests(unittest.TestCase):
             desired_capabilities=self.desired_capabilities,
             command_executor=sauce_url % (USERNAME, ACCESS_KEY)
         )
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(300)
 
     def move_to_element(self, element):
         if not self.desired_capabilities['browserName'] in ['android', 'safari', 'firefox']:
