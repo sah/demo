@@ -15,13 +15,17 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "iPhone Simulator",
+"""
+{'deviceName': "iPhone Simulator",
               'platformName': "iOS",
               'platformVersion': "9.2",
               'deviceOrientation': "portrait",
               'browserName': "Safari",
               'appiumVersion': "1.5.2"
               },
+"""
+
+platforms = [
              {'platform': "Windows 10",
               'browserName': "chrome",
               'version': "latest"
