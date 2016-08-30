@@ -131,10 +131,18 @@ class WalmartTests(unittest.TestCase):
         #submit = self.driver.find_element_by_css_selector('.searchbar-submit')
         submit = self.driver.find_element_by_css_selector('button.header-GlobalSearch-submit')
         submit.click()
-        spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
+
+        def check_in_title(title_content):
+            title = self.driver.title
+            if title_content not in title:
+                print "%s not in %s" % (repr(title_content), repr(title))
+                return False
+            return True
+
+        spin_assert("wrong title", check_in_title, args=["hot sauce"])
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
         cholula.click()
-        spin_assert("wrong title", lambda: "Cholula Original" in self.driver.title)
+        spin_assert("wrong title", check_in_title, args=["Cholula Original"])
 
     def test_terms(self):
         wd = self.driver
