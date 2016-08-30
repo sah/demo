@@ -128,7 +128,8 @@ class WalmartTests(unittest.TestCase):
         search.click()
         search.send_keys("hot sauce")
 
-        submit = self.driver.find_element_by_css_selector('.searchbar-submit')
+        #submit = self.driver.find_element_by_css_selector('.searchbar-submit')
+        submit = self.driver.find_element_by_css_selector('button.header-GlobalSearch-submit')
         submit.click()
         spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
