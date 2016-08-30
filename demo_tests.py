@@ -118,7 +118,7 @@ class WalmartTests(unittest.TestCase):
         self.driver.implicitly_wait(30)
 
     def move_to_element(self, element):
-        if not self.desired_capabilities['browserName'] in ['android', 'safari']:
+        if not self.desired_capabilities['browserName'] in ['android', 'safari', 'firefox']:
             ActionChains(self.driver).move_to_element(element).perform()
 
     def test_search(self):
