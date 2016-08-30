@@ -123,7 +123,8 @@ class WalmartTests(unittest.TestCase):
 
     def test_search(self):
         self.driver.get('http://walmart.com/')
-        search = self.driver.find_element_by_css_selector('.js-searchbar-input')
+        #search = self.driver.find_element_by_css_selector('.js-searchbar-input')
+        search = self.driver.find_element_by_css_selector('input#global-search-input.header-GlobalSearch-input')
         search.click()
         search.send_keys("hot sauce")
 
