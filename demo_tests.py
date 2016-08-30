@@ -15,7 +15,8 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Android Emulator",
+"""
+{'deviceName': "Android Emulator",
               'deviceOrientation': "portrait",
               'browserName': "android",
               'version': "5.1"
@@ -27,6 +28,9 @@ platforms = [{'deviceName': "Android Emulator",
               'browserName': "Safari",
               'appiumVersion': "1.5.2"
               },
+"""
+
+platforms = [
              {'platform': "Windows 10",
               'browserName': "chrome",
               'version': "latest"
