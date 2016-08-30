@@ -76,7 +76,7 @@ def spin_assert(msg, test, timeout=5, args=[]):
             raise
         except Exception, e:
             if (str(e), type(e)) != (str(last_e), type(last_e)):
-                print "%s: %s (try: %s):" % (msg, repr(args), (i + 1), str(e), type(e))
+                print "%s: %s (try: %s): %s %s" % (msg, repr(args), (i + 1), str(e), type(e))
                 traceback.print_exc(file=sys.stdout)
             last_e = e
         time.sleep(1)
