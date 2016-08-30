@@ -15,12 +15,7 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Android Emulator",
-              'deviceOrientation': "portrait",
-              'browserName': "android",
-              'version': "5.1"
-              },
-             {'deviceName': "iPhone Simulator",
+platforms = [{'deviceName': "iPhone Simulator",
               'platformName': "iOS",
               'platformVersion': "9.2",
               'deviceOrientation': "portrait",
