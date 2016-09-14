@@ -15,12 +15,8 @@ BUILD = os.environ.get('JOB_NAME') + ' #' + os.environ.get('BUILD_NUMBER')
 
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-platforms = [{'deviceName': "Android Emulator",
-              'deviceOrientation': "portrait",
-              'browserName': "android",
-              'version': "5.1"
-              },
-             {'deviceName': "iPhone Simulator",
+
+platforms = [{'deviceName': "iPhone Simulator",
               'platformName': "iOS",
               'platformVersion': "9.2",
               'deviceOrientation': "portrait",
@@ -32,11 +28,7 @@ platforms = [{'deviceName': "Android Emulator",
               'version': "latest"
               },
              {'platform': "Windows 10",
-              'browserName': "edge",
-              'version': "latest"
-              },
-             {'platform': "Windows 10",
-              'browserName': "firefox",
+              'browserName': "microsoftedge",
               'version': "latest"
               },
              {'platform': "OS X 10.11",
@@ -45,10 +37,6 @@ platforms = [{'deviceName': "Android Emulator",
               },
              {'platform': "OS X 10.10",
               'browserName': "chrome",
-              'version': "latest"
-              },
-             {'platform': "OS X 10.11",
-              'browserName': "firefox",
               'version': "latest"
               }]
 platforms = platforms * 2
@@ -66,18 +54,18 @@ def spin_assert(msg, test, timeout=5, args=[]):
             if not test(*args):
                 raise AssertionError(msg)
             if i > 0:
-                print msg, "success on %s (%s)" % (i + 1, name)
+                print "success on try %s (%s(msg=%s args=%s))" % (i + 1, name, repr(msg), repr(args))
             break
         except FailTestException:
             raise
         except Exception, e:
             if (str(e), type(e)) != (str(last_e), type(last_e)):
-                print msg, "(try: %s):" % (i + 1), str(e), type(e)
+                print "%s: %s (try: %s): %s %s" % (msg, repr(args), (i + 1), str(e), type(e))
                 traceback.print_exc(file=sys.stdout)
             last_e = e
         time.sleep(1)
     else:
-        print "%s fail (%s tries) (%s)" % (msg, i + 1, name)
+        print "%s: %s fail (%s tries) (%s)" % (msg, repr(args), i + 1, name)
         raise AssertionError(msg)
 
 
@@ -106,35 +94,50 @@ class WalmartTests(unittest.TestCase):
         self.desired_capabilities['build'] = BUILD
         self.desired_capabilities['idleTimeout'] = 600
 
-        sauce_url = "http://%s:%s@ondemand.saucelabs.com:80/wd/hub"
+        sauce_url = "http://%s:%s@ondemand.saucelabs.com:%s/wd/hub"
         self.driver = webdriver.Remote(
             desired_capabilities=self.desired_capabilities,
-            command_executor=sauce_url % (USERNAME, ACCESS_KEY)
+            command_executor=sauce_url % (USERNAME, ACCESS_KEY, 4499)
         )
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(300)
+
+    def move_to_element(self, element):
+        if not self.desired_capabilities['browserName'] in ['android', 'safari', 'firefox']:
+            ActionChains(self.driver).move_to_element(element).perform()
 
     def test_search(self):
         self.driver.get('http://walmart.com/')
-        search = self.driver.find_element_by_css_selector('.js-searchbar-input')
+        #search = self.driver.find_element_by_css_selector('.js-searchbar-input')
+        search = self.driver.find_element_by_css_selector('input#global-search-input.header-GlobalSearch-input')
         search.click()
         search.send_keys("hot sauce")
 
-        submit = self.driver.find_element_by_css_selector('.searchbar-submit')
+        #submit = self.driver.find_element_by_css_selector('.searchbar-submit')
+        submit = self.driver.find_element_by_css_selector('button.header-GlobalSearch-submit')
         submit.click()
-        spin_assert("wrong title", lambda: "hot sauce" in self.driver.title)
+
+        def check_in_title(title_content):
+            title = self.driver.title
+            if title_content not in title:
+                print "%s not in %s" % (repr(title_content), repr(title))
+                return False
+            return True
+
+        spin_assert("wrong title", check_in_title, args=["hot sauce"])
         cholula = self.driver.find_element_by_link_text('Cholula Original Hot Sauce, 12 fl oz')
         cholula.click()
-        spin_assert("wrong title", lambda: "Cholula" in self.driver.title)
+        spin_assert("wrong title", check_in_title, args=["Cholula Original"])
 
     def test_terms(self):
         wd = self.driver
         wd.get("http://walmart.com/")
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         terms = wd.find_element_by_link_text("Terms of Use")
-        if not self.desired_capabilities['browserName'] in ['android', 'safari']:
-            ActionChains(wd).move_to_element(terms).perform()
+        self.move_to_element(terms)
         terms.click()
         wd.find_element_by_link_text("Introduction").click()
-        spin_assert('no acceptance', lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
+        spin_assert('no acceptance',
+                    lambda: "you accept this Agreement" in wd.find_element_by_tag_name("html").text)
 
     def tearDown(self):
         print("Link to your job: https://saucelabs.com/jobs/%s" % self.driver.session_id)
