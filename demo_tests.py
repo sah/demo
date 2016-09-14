@@ -28,7 +28,7 @@ platforms = [{'deviceName': "iPhone Simulator",
               'version': "latest"
               },
              {'platform': "Windows 10",
-              'browserName': "edge",
+              'browserName': "microsoftedge",
               'version': "latest"
               },
              {'platform': "OS X 10.11",
