@@ -94,10 +94,10 @@ class WalmartTests(unittest.TestCase):
         self.desired_capabilities['build'] = BUILD
         self.desired_capabilities['idleTimeout'] = 600
 
-        sauce_url = "http://%s:%s@ondemand.saucelabs.com:4499/wd/hub"
+        sauce_url = "http://%s:%s@ondemand.saucelabs.com:%s/wd/hub"
         self.driver = webdriver.Remote(
             desired_capabilities=self.desired_capabilities,
-            command_executor=sauce_url % (USERNAME, ACCESS_KEY)
+            command_executor=sauce_url % (USERNAME, ACCESS_KEY, 4499)
         )
         self.driver.implicitly_wait(300)
 
